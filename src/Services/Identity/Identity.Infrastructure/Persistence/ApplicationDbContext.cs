@@ -31,6 +31,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
    // public DbSet<User> User => Set<User>();
    
     //public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<BankAccount> BankAccounts => Set<BankAccount>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
