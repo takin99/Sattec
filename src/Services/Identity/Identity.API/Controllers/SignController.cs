@@ -43,7 +43,7 @@ public class SignController : ApiControllerBase
         return await Mediator.Send(command);
     }
     [Route("IentityInformation"), HttpPost]
-    public async Task<ActionResult<Result>> IentityInformation(IdentityInformationCommand command)
+    public async Task<ActionResult<Result>> IdentityInformation(IdentityInformationCommand command)
     {
         return await Mediator.Send(command);
     }
