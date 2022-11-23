@@ -327,7 +327,12 @@ public class IdentityService : IIdentityService
     }
     public async Task<Result> updateBankInfo(string userId, bool isDefaultAccount, Guid bankId, string title, string accountNo, string cardNo, string iban, string accountName, string description)
     {
+       
         var user = _userManager.Users.Where(u => u.Id == userId).FirstOrDefault();
+
+        var info = _context.BankAccounts.Where(b=>b.UserId==userId).FirstOrDefault();
+        if (info == null)
+            throw new NotFoundException("info not found");
 
         if (user == null)
             throw new NotFoundException("User not found");
@@ -336,6 +341,7 @@ public class IdentityService : IIdentityService
             throw new NotFoundException("BankAccounts not found");
 
         var bankAccount= user.BankAccounts.Where(b=>b.AccountNo == accountNo).SingleOrDefault();
+
         bankAccount.Title = title;
         bankAccount.AccountName = accountName;
 
