@@ -133,7 +133,7 @@ public class IdentityService : IIdentityService
         return Result.Success();
 
     }
-    public async Task<string> LoginByUserPassAsync(string phoneNumber, string password)
+       public async Task<(string token, string userId)> LoginByUserPassAsync(string phoneNumber, string password)
     {
         var targetUser = _userManager.Users.Where(u => u.PhoneNumber == phoneNumber).SingleOrDefault();
 
@@ -161,7 +161,7 @@ public class IdentityService : IIdentityService
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(targetUser);
 
-        return token;
+        return (token , targetUser.Id);
     }
     public async Task<string> GetByPhoneNumber(string phoneNumber)
     {
