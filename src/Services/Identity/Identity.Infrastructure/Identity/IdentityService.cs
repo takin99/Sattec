@@ -305,6 +305,7 @@ public class IdentityService : IIdentityService
         var newBankAccount = new BankAccount
             {
                 UserId = userId,
+                IsDefaultAccount = isDefaultAccount,
                 BankId = bankId,
                 Title = title,
                 AccountNo = accountNo,
@@ -315,6 +316,7 @@ public class IdentityService : IIdentityService
             };
 
             user.AddBankAccount(newBankAccount);
+             user.IsEnableDeafaultAccount(newBankAccount.BankId, newBankAccount.IsDefaultAccount);
         //Todo
         //از بین همه حساب ها حتما یکی از حساب ها باید پیش فرض باشد.
         //آخرین حسابی که ثبت می شود تیک پیش فرض برای کاربر فعال باشد.
