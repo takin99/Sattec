@@ -332,21 +332,12 @@ public class IdentityService : IIdentityService
         if (user == null)
             throw new NotFoundException("User not found");
 
-        user.BankAccounts = new List<BankAccount>()
-        {
-            new BankAccount()
-            {
-                UserId = userId,
-                BankId = bankId,
-                Title = title,
-                AccountName = accountName,
-                AccountNo = accountNo,
-                CardNo = cardNo,
-                IBAN = iban,
-                Description = description
-            },
-        };
-        //   user.AddBankAccount(user.BankAccounts);
+        if (!user.BankAccounts.Any())
+            throw new NotFoundException("BankAccounts not found");
+
+        var bankAccount= user.BankAccounts.Where(b=>b.AccountNo == accountNo).SingleOrDefault();
+        bankAccount.Title = title;
+        bankAccount.AccountName = accountName;
 
         return Result.Success();
     }
