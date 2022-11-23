@@ -130,4 +130,10 @@ public class ApplicationUser : IdentityUser
     {
         return MobileVerificationCode != null && MobileVerificationCodeExpireTime > DateTime.UtcNow;
     }
+     public bool IsEnableDeafaultAccount(Guid bankId, bool isDefaultAccount)
+    {
+        this.BankAccounts.OrderByDescending(u => u.BankId == bankId).FirstOrDefault();
+
+        return isDefaultAccount = true;
+    }
 }
