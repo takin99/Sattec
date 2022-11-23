@@ -13,7 +13,7 @@ public interface IIdentityService
     Task<string> GetByPhoneNumber(string phoneNumber);
     Task<Result> FindByPhoneNumber(string phoneNumber);
     Task<Result> DeleteUserAsync(string userId);
-    Task<string> LoginByUserPassAsync(string phoneNumber, string password);
+    Task<(string token, string userId)> LoginByUserPassAsync(string phoneNumber, string password);
     Task<Result> ResetPassword(string code, string newPassword);
     Task<Result> CreateUserIdentityInfo(Guid id, string firstName, string lastName, string fatherName, string nationalId, string identitySerialNumber, DateTime birthday, string birthPlace);
     Task<Result> CreateContactInformation(Guid id, string essentialPhone, string phoneNumber, string postalCode, string address, string country, string state, string city, string description);
