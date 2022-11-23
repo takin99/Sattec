@@ -10,6 +10,7 @@ public record SigninCommand : IRequest<SigninResponse>
 public class SigninResponse
 {
     public string BearerToken { get; init; }
+    public string UserId { get; init; }
 }
 public class SigninCommandHandler : IRequestHandler<SigninCommand, SigninResponse>
 {
@@ -26,6 +27,6 @@ public class SigninCommandHandler : IRequestHandler<SigninCommand, SigninRespons
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return new SigninResponse() { BearerToken = user};
+        return new SigninResponse() { BearerToken = (user.token), UserId = user.userId};
     }
 }
